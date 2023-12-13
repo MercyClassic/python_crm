@@ -6,6 +6,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.infrastructure.db.database import Base
 
 if TYPE_CHECKING:
+    from app.infrastructure.db.models.subscription.subscription import Subscription
     from app.infrastructure.db.models.technical_support.ticket import Ticket
 
 
@@ -19,5 +20,8 @@ class Client(Base):
     email: Mapped[str] = mapped_column(String(300), nullable=True)
 
     tickets: Mapped[List['Ticket']] = relationship(
+        back_populates='client',
+    )
+    subscriptions: Mapped[List['Subscription']] = relationship(
         back_populates='client',
     )
