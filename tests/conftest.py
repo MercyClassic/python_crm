@@ -13,7 +13,7 @@ from sqlalchemy.ext.asyncio import (
 from sqlalchemy.pool import NullPool
 
 from app.application.config.config import get_config
-from app.infrastructure.db.database import Base
+from app.infrastructure.database.database import Base
 from app.main.di.dependencies.stub import get_session_stub
 from app.main.main import app
 

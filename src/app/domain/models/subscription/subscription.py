@@ -20,4 +20,4 @@ class Subscription:
     price: Decimal
     client_id: int
     created_at: datetime
-    client: Client
+    client: 'Client'

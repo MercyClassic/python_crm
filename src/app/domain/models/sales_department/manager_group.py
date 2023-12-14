@@ -11,5 +11,5 @@ class ManagerGroup:
     id: int
     supervisor_id: int
 
-    supervisor: Supervisor
-    managers: List[Manager] = field(default_factory=list)
+    supervisor: 'Supervisor'
+    managers: List['Manager'] = field(default_factory=list)

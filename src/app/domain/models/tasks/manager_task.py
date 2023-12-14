@@ -13,9 +13,9 @@ class ManagerTask:
     title: str
     description: str
     delegated_at: datetime
-    done_at: datetime | None = None
+    done_at: datetime | None
     manager_id: int
     delegated_by_id: int
 
-    manager: Manager
-    delegated_by: Supervisor
+    manager: 'Manager'
+    delegated_by: 'Supervisor'

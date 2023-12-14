@@ -14,5 +14,5 @@ class Client:
     phone_number: str
     email: str
 
-    tickets: List[Ticket] = field(default_factory=list)
-    subscriptions: List[Subscription] = field(default_factory=list)
+    tickets: List['Ticket'] = field(default_factory=list)
+    subscriptions: List['Subscription'] = field(default_factory=list)

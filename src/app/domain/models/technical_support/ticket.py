@@ -12,5 +12,5 @@ class Ticket:
     client_id: int
     chat_id: int
 
-    client: Client
-    chat: Chat
+    client: 'Client'
+    chat: 'Chat'

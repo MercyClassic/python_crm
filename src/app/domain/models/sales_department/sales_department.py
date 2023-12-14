@@ -10,4 +10,4 @@ class SalesDepartment:
     id: int
     title: str
 
-    supervisors: List[Supervisor] = field(default_factory=list)
+    supervisors: List['Supervisor'] = field(default_factory=list)

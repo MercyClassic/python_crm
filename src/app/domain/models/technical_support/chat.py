@@ -13,8 +13,8 @@ class Chat:
     client_id: int
     ticket_id: int
 
-    client: Client
-    ticket: Ticket
+    client: 'Client'
+    ticket: 'Ticket'
 
 
 @dataclass
@@ -25,6 +25,6 @@ class Message:
     manager_id: int
     text: str
 
-    chat: Chat
-    client: Client
-    manager: Manager
+    chat: 'Chat'
+    client: 'Client'
+    manager: 'Manager'

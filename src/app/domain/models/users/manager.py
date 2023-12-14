@@ -13,4 +13,4 @@ class Manager:
     manager_group_id: int
 
     manager_group: ManagerGroup
-    tasks: List[ManagerTask] = field(default_factory=list)
+    tasks: List['ManagerTask'] = field(default_factory=list)

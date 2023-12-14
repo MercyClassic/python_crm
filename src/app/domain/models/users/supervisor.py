@@ -14,6 +14,6 @@ class Supervisor:
     sales_department_id: int
     manager_group_id: int
 
-    sales_department: SalesDepartment
-    manager_group: ManagerGroup
-    delegated_tasks: List[ManagerTask]
+    sales_department: 'SalesDepartment'
+    manager_group: 'ManagerGroup'
+    delegated_tasks: List['ManagerTask']
