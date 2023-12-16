@@ -1,11 +1,10 @@
+import os
 from logging.config import fileConfig
 
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 
-from app.application.config.config import get_config
-from app.infrastructure.database.base import *
-from app.infrastructure.database.database import Base
+from app.infrastructure.database.base import Base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -16,13 +15,7 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-my_config = get_config()
-database_url = 'postgresql+asyncpg://%s:%s@%s:5432/%s' % (
-    my_config.POSTGRES_USER,
-    my_config.POSTGRES_PASSWORD,
-    my_config.POSTGRES_HOST,
-    my_config.POSTGRES_DB,
-)
+database_url = '%s?async_fallback=True' % os.environ['db_uri']
 
 config.set_main_option('sqlalchemy.url', database_url)
 

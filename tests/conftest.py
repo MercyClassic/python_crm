@@ -1,4 +1,5 @@
 import asyncio
+import os
 from functools import partial
 from typing import AsyncGenerator
 
@@ -12,7 +13,6 @@ from sqlalchemy.ext.asyncio import (
 )
 from sqlalchemy.pool import NullPool
 
-from app.application.config.config import get_config
 from app.infrastructure.database.database import Base
 from app.main.di.dependencies.stub import get_session_stub
 from app.main.main import app
@@ -27,18 +27,13 @@ def create_test_async_session_maker(engine: AsyncEngine):
     )
 
 
-config = get_config()
-database_url = 'postgresql+asyncpg://%s:%s@%s:5432/%s' % (
-    config.POSTGRES_USER_TEST,
-    config.POSTGRES_PASSWORD_TEST,
-    config.POSTGRES_HOST_TEST,
-    config.POSTGRES_DB_TEST,
-)
 test_engine = create_async_engine(
-    database_url,
+    os.environ['test_db_uri'],
     poolclass=NullPool,
 )
-test_async_session_maker = create_test_async_session_maker(test_engine)
+test_async_session_maker = create_test_async_session_maker(
+    test_engine,
+)
 
 
 async def override_get_async_session(

@@ -1,6 +1,7 @@
+from datetime import datetime
 from typing import TYPE_CHECKING
 
-from sqlalchemy import ForeignKey, Integer
+from sqlalchemy import DateTime, ForeignKey, Integer
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.infrastructure.database.database import Base
@@ -16,13 +17,9 @@ class Chat(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     client_id: Mapped[int] = mapped_column(ForeignKey('client.id'))
-    ticket_id: Mapped[int] = mapped_column(ForeignKey('ticket.id'))
 
     client: Mapped['Client'] = relationship(
         back_populates='chats',
-    )
-    ticket: Mapped['Ticket'] = relationship(
-        back_populates='chat',
     )
 
 
@@ -34,6 +31,10 @@ class Message(Base):
     client_id: Mapped[int] = mapped_column(ForeignKey('client.id'))
     manager_id: Mapped[int] = mapped_column(ForeignKey('manager.id'))
     text: Mapped[str]
+    sent_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        default=datetime.utcnow,
+    )
     is_read: Mapped[bool] = mapped_column(default=False)
 
     chat: Mapped['Chat'] = relationship(

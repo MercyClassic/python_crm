@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import List
 
 from app.domain.models.subscription.subscription import Subscription
-from app.infrastructure.common.database.repositories.sqlaclhemy_gateway import (
+from app.infrastructure.database.interfaces.repositories.sqlaclhemy_gateway import (
     SQLAlchemyBaseGateway,
 )
 

@@ -11,8 +11,8 @@ class Client:
     id: int
     first_name: str
     last_name: str
-    phone_number: str
-    email: str
+    phone_number: str | None
+    email: str | None
 
     tickets: List['Ticket'] = field(default_factory=list)
     subscriptions: List['Subscription'] = field(default_factory=list)

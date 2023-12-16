@@ -3,8 +3,7 @@ from decimal import Decimal
 from enum import Enum
 from typing import TYPE_CHECKING
 
-from sqlalchemy import ForeignKey, Integer
-from sqlalchemy.dialects.postgresql import ENUM
+from sqlalchemy import DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.infrastructure.database.database import Base
@@ -22,15 +21,13 @@ class Subscription(Base):
     __tablename__ = 'subscription'
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    kind: Mapped[ENUM] = mapped_column(
-        ENUM(
-            KindEnum,
-            name='subscription_kind',
-        ),
-    )
+    kind: Mapped[Enum] = mapped_column(String)
     price: Mapped[Decimal]
     client_id: Mapped[int] = mapped_column(ForeignKey('client.id'))
-    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        default=datetime.utcnow,
+    )
 
     client: Mapped['Client'] = relationship(
         back_populates='subscriptions',

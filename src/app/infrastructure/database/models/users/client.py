@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     from app.infrastructure.database.models.subscription.subscription import (
         Subscription,
     )
-    from app.infrastructure.database.models.technical_support.ticket import Ticket
+    from app.infrastructure.database.models.technical_support.ticket import Chat, Ticket
 
 
 class Client(Base):
@@ -23,6 +23,9 @@ class Client(Base):
     is_active: Mapped[bool] = mapped_column(default=False)
 
     tickets: Mapped[List['Ticket']] = relationship(
+        back_populates='client',
+    )
+    chats: Mapped[List['Chat']] = relationship(
         back_populates='client',
     )
     subscriptions: Mapped[List['Subscription']] = relationship(

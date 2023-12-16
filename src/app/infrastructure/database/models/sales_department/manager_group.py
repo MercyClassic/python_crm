@@ -17,7 +17,7 @@ class ManagerGroup(Base):
     supervisor_id: Mapped[int] = mapped_column(ForeignKey('supervisor.id'))
 
     supervisor: Mapped['Supervisor'] = relationship(
-        back_populates='manager_group',
+        back_populates='manager_groups',
     )
     managers: Mapped[List['Manager']] = relationship(
         back_populates='manager_group',

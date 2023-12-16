@@ -18,7 +18,7 @@ def get_logging_dict(root_dir: str) -> dict:
             },
         },
         'loggers': {
-            'main': {
+            'app.main.exceptions.setup_exception_handlers': {
                 'handlers': ['main'],
                 'level': 'WARNING',
                 'propagate': True,

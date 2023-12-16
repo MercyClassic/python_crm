@@ -3,20 +3,12 @@ from typing import AsyncGenerator
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase
 
-from app.application.config.config import Config
-
 
 class Base(DeclarativeBase):
     pass
 
 
-def create_async_session_maker(config: Config):
-    database_url = 'postgresql+asyncpg://%s:%s@%s:5432/%s' % (
-        config.POSTGRES_USER,
-        config.POSTGRES_PASSWORD,
-        config.POSTGRES_HOST,
-        config.POSTGRES_DB,
-    )
+def create_async_session_maker(database_url: str):
     engine = create_async_engine(
         database_url,
     )

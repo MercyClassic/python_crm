@@ -20,12 +20,11 @@ class Supervisor(Base):
     name: Mapped[str]
     is_active: Mapped[bool]
     sales_department_id: Mapped[int] = mapped_column(ForeignKey('sales_department.id'))
-    manager_group_id: Mapped[int] = mapped_column(ForeignKey('manager_group.id'))
 
     sales_department: Mapped['SalesDepartment'] = relationship(
-        back_populates='managers',
+        back_populates='supervisors',
     )
-    manager_group: Mapped['ManagerGroup'] = relationship(
+    manager_groups: Mapped[List['ManagerGroup']] = relationship(
         back_populates='supervisor',
     )
     delegated_tasks: Mapped[List['ManagerTask']] = relationship(
