@@ -1,3 +1,4 @@
+from app.infrastructure.database.models.products.product import *
 from app.infrastructure.database.models.sales_department.manager_group import *
 from app.infrastructure.database.models.sales_department.sales_department import *
 from app.infrastructure.database.models.subscription.subscription import *
